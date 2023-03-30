@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-!pip install openai
-!pip install gradio
+pip install openai
+pip install gradio
 
 import os
 import openai
