@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-pip install openai
-pip install gradio
+import subprocess
+subprocess.run(["pip", "install", "openai"])
 
 import os
 import openai
