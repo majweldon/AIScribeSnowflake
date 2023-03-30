@@ -100,4 +100,4 @@ ui = gr.Interface(fn=transcribe,
                            gr.Number(label=".mp3 MB")])
 
 
-ui.launch(share=True, debug=True)
+ui.launch(share=False, debug=True)
