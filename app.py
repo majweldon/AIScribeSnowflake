@@ -91,7 +91,7 @@ my_inputs = [
 
 ui = gr.Interface(fn=transcribe, 
                   inputs=my_inputs, 
-                  outputs=[gr.Text(label="Your Note"),
+                  outputs=[gr.Textbox(label="Your Note").style(show_copy_button=True)),
                            gr.Number(label="Audio Word Count"),
                            gr.Number(label=".mp3 MB")])
 
