@@ -17,28 +17,27 @@ openai.api_key = os.environ.get('OPENAI_SECRET_KEY')
 
 note_transcript = ""
 
+
 def transcribe(audio, history_type):
   global note_transcript    
-     
-  if history_type == "Weldon":
-    with open("Format_Library/Weldon_Note_Format.txt", "r") as f:
-      role = f.read()
-  elif history_type == "Ortlieb":
-    with open("Format_Library/Ortlieb_Note_Format.txt", "r") as f:
-      role = f.read()
-  elif history_type == "Handover":
-    with open("Format_Library/Weldon_Handover_Note_Format.txt", "r") as f:
-      role = f.read()
-  elif history_type == "Leinweber":
-    with open("Format_Library/Leinweber_Note_Format.txt", "r") as f:
-      role = f.read()
-  elif history_type == "Meds Only":
-    with open("Format_Library/Medications.txt", "r") as f:
-      role = f.read()
-  else:
-    with open("Format_Library/Ortlieb_Note_Format.txt", "r") as f:
-      role = f.read()
 
+  history_type_map = {
+      "History": "Weldon_Note_Format.txt",
+      "Physical": "Weldon_PE_Note_Format.txt",
+      "H+P": "Weldon_Full_Note_Format.txt",
+      "Impression/Plan": "Weldon_Impression_Note_Format.txt",
+      "Handover": "Weldon_Handover_Note_Format.txt",
+      "Meds Only": "Medications.txt",
+      "EMS": "EMS_Handover_Note_Format.txt",
+      "Triage": "Triage_Note_Format.txt",
+      "Ortlieb": "Ortlieb_Note_Format.txt",
+      "Leinweber": "Leinweber_Note_Format.txt",
+   }
+    
+  file_name = history_type_map.get(history_type, "Weldon_Full_Note_Format.txt")
+  with open(f"Format_Library/{file_name}", "r") as f:
+      role = f.read()
+    
   messages = [{"role": "system", "content": role}]
 
   ###### Create Dialogue Transcript from Audio Recording and Append(via Whisper)
