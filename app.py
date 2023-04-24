@@ -58,7 +58,7 @@ def transcribe(audio, history_type):
   
     
   max_attempts = 3
-      attempt = 0
+  attempt = 0
       while attempt < max_attempts:
           try:
               audio_transcript = openai.Audio.transcribe("whisper-1", audio_file)
