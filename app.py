@@ -55,7 +55,21 @@ def transcribe(audio, history_type):
 
   #Send file to Whisper for Transcription
   audio_file = open("Audio_Files/test.mp3", "rb")
-  audio_transcript = openai.Audio.transcribe("whisper-1", audio_file)
+  
+    
+  max_attempts = 3
+      attempt = 0
+      while attempt < max_attempts:
+          try:
+              audio_transcript = openai.Audio.transcribe("whisper-1", audio_file)
+              break
+          except openai.error.APIConnectionError as e:
+              print(f"Attempt {attempt + 1} failed with error: {e}")
+              attempt += 1
+              time.sleep(1) # wait for 1 second before retrying
+      else:
+          print("Failed to transcribe audio after multiple attempts")  
+    
   print(audio_transcript)
   messages.append({"role": "user", "content": audio_transcript["text"]})
   
@@ -79,7 +93,7 @@ def transcribe(audio, history_type):
   #Ask OpenAI to create note transcript
   response = openai.ChatCompletion.create(model="gpt-3.5-turbo", temperature=0, messages=messages)
   note_transcript = (response["choices"][0]["message"]["content"])
-   
+  print(note_transcript)
   return [note_transcript, num_words,mp3_megabytes]
 
 #Define Gradio Interface
