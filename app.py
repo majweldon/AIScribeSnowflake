@@ -3,7 +3,7 @@
 import subprocess
 subprocess.run(["pip", "install", "openai"])
 subprocess.run(["pip", "install", "soundfile"])
-
+subprocess.run(["pip", "install", "python-ffmpeg"])
 
 import os
 import openai
