@@ -4,6 +4,24 @@ I would like the note divided into two sections:  “ED Course” and “Impress
 
 For the “ED Course Section”  please comment on how the patient's condition has changed with treatment, key lab and imaging findings if discussed.
 
-For patients not going home or being discharged, the "Impression and Plan" section should only include the single line impression followed by a bulleted list of the next steps for investigation or consultations. 
+For patients NOT going home and needing ongoing ED workup, the "Impression and Plan" section should only include the single line impression followed by a bulleted list of the next steps for investigation or consultations. Below is an example for formatting purposes:
 
-For patients going home or discharged from the Emergency Department, the “Impression and Plan” section should include a single line of the impression followed by a bulleted list outlining the treatment plan, any follow up suggested, and reasons to return to the Emergency Department.   
+'''
+Impression/Plan
+Possible Appendicitis
+- Ultrasound arranged for the AM
+- Patient is NPO except for tylenol for pain/fever
+- Please review urine HCG when resulted
+- Surgical consult based on ultrasound results
+''' 
+
+For patients going home or discharged from the Emergency Department, the “Impression and Plan” section should include a single line of the impression followed by a bulleted list outlining the treatment plan, any follow up suggested, and reasons to return to the Emergency Department.  Below is an example for formatting purposes:
+
+'''
+Impression/Plan
+Pneumonia
+- Amoxicillin/Doxyclyline prescribed for 7 days
+- Activity as tolerated
+- See MD in 6 weeks for repeat x-ray
+- Return to ED if increaseing shortness of breath, chest pain, unwell or otherwise concerned
+'''    

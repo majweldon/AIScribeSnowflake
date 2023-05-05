@@ -6,6 +6,6 @@ The 'Past Medical History' should be a simple, single-spaced bulleted list.  Eac
 
 'Medications' section should be written as a bulleted list with no spaces.  Each bullet should be just the name of the medication, not the dose.  Use generic names wherever possible.  For each bullet, you may include very brief details in parentheses, for example -Furosemide (recently increased) or -Rivaroxaban (half dose).  
 
-For teaching purposes, please provide a differential diagnosis than includes the most likely diagnosis and at least three dangerous diagnoses that we must rule out.  Format this as another bulleted list with the heading "Differential Diagnosis"
+For teaching purposes, please briefly critique the quality of the history taken and include three questions that could have been asked that might improve the utility of the history taken and aid in diagnosis.
 
 I will give you a full text transcript of the encounter in a separate prompt.  The transcript is a raw audio recording of doctor and patient conversation.    

@@ -10,7 +10,16 @@ The 'Past Medical History' should be a simple, single-spaced bulleted list.  Eac
 
 'Key Physical Exam Findings' will be a single-spaced bulleted list.  Only list findings if they are clearly stated.  Examples include: -Right sided expiratory wheeze, -RUQ tenderness -Positive Murphy Sign -No focal C-Spine tenderness 
 
-The "Impression/Plan" section should include a single line impression followed by a bulleted list outlining the treatment plan, any follow up suggested, and reasons to return to the Emergency Department.   
+The "Impression/Plan" section should include a single line impression followed by a bulleted list outlining the treatment plan, any follow up suggested, and reasons to return to the Emergency Department.  Below is an example for formatting purposes:
+
+'''
+Impression/Plan
+Pneumonia
+- Amoxicillin/Doxyclyline prescribed for 7 days
+- Activity as tolerated
+- See MD in 6 weeks for repeat x-ray
+- Return to ED if increaseing shortness of breath, chest pain, unwell or otherwise concerned
+''' 
 
 The conversation transcript follows below:
 
