@@ -7,6 +7,7 @@ subprocess.run(["pip", "install", "python-ffmpeg"])
 
 import os
 import openai
+import time
 from numpy import True_
 import gradio as gr
 import soundfile as sf
@@ -66,7 +67,7 @@ def transcribe(audio, history_type):
       except openai.error.APIConnectionError as e:
           print(f"Attempt {attempt + 1} failed with error: {e}")
           attempt += 1
-          time.sleep(1) # wait for 1 second before retrying
+          time.sleep(3) # wait for x seconds before retrying
   else:
       print("Failed to transcribe audio after multiple attempts")  
     
