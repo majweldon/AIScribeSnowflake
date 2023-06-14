@@ -21,11 +21,9 @@ note_transcript = ""
 
 def transcribe(audio, history_type):
   global note_transcript    
-
+"Weldon","Ortlieb","Leinweber","Impression/Plan","Handover","Triage","Meds Only"
   history_type_map = {
-      "History": "Weldon_Note_Format.txt",
-      "Physical": "Weldon_PE_Note_Format.txt",
-      "H+P": "Weldon_Full_Note_Format.txt",
+      "Weldon": "Weldon_Full_Visit_Format.txt",
       "Impression/Plan": "Weldon_Impression_Note_Format.txt",
       "Handover": "Weldon_Handover_Note_Format.txt",
       "Meds Only": "Medications.txt",
@@ -33,9 +31,10 @@ def transcribe(audio, history_type):
       "Triage": "Triage_Note_Format.txt",
       "Ortlieb": "Ortlieb_Note_Format.txt",
       "Leinweber": "Leinweber_Note_Format.txt",
+      "Cooper": "Cooper_Sports_Consult_History.txt"
    }
     
-  file_name = history_type_map.get(history_type, "Weldon_Full_Note_Format.txt")
+  file_name = history_type_map.get(history_type, "Weldon_History_Physical_Format.txt")
   with open(f"Format_Library/{file_name}", "r") as f:
       role = f.read()
     
@@ -100,7 +99,7 @@ def transcribe(audio, history_type):
 #Define Gradio Interface
 my_inputs = [
     gr.Audio(source="microphone", type="filepath"),
-    gr.Radio(["Weldon","Ortlieb","Leinweber","Impression/Plan","Handover","Triage","Meds Only"], show_label=False),
+    gr.Radio(["Cooper","Weldon","Ortlieb","Leinweber","Impression/Plan","Handover","Triage","Meds Only"], show_label=False),
 ]
 
 ui = gr.Interface(fn=transcribe, 
