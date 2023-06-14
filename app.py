@@ -21,7 +21,6 @@ note_transcript = ""
 
 def transcribe(audio, history_type):
   global note_transcript    
-"Weldon","Ortlieb","Leinweber","Impression/Plan","Handover","Triage","Meds Only"
   history_type_map = {
       "Weldon": "Weldon_Full_Visit_Format.txt",
       "Impression/Plan": "Weldon_Impression_Note_Format.txt",
