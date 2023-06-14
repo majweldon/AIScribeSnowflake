@@ -4,6 +4,7 @@ import subprocess
 subprocess.run(["pip", "install", "openai"])
 subprocess.run(["pip", "install", "soundfile"])
 subprocess.run(["pip", "install", "python-ffmpeg"])
+subprocess.run (["sudo", "mkdir", "/etc/apt/sources.list.d"])
 
 import os
 import openai
@@ -52,7 +53,7 @@ def transcribe(audio, history_type):
   sound.export("Audio_Files/test.mp3", format="mp3")
 
 
-  #Send file to Whisper for Transcription
+  #Send file to Whisper for Trans"cription
   audio_file = open("Audio_Files/test.mp3", "rb")
   
     
