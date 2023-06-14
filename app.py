@@ -5,6 +5,7 @@ subprocess.run(["pip", "install", "openai"])
 subprocess.run(["pip", "install", "soundfile"])
 subprocess.run(["pip", "install", "python-ffmpeg"])
 subprocess.run(["sudo", "mkdir", "/etc/apt/sources.list.d"])
+subprocess.run(["sudo", "touch", "/etc/apt/sources.list"])
 
 import os
 import openai
