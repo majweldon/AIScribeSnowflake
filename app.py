@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-wtf wtf wtf wtf
 
 import subprocess
-subprocess.run(["apt update"])
 subprocess.run(["pip", "install", "openai"])
 subprocess.run(["pip", "install", "soundfile"])
 subprocess.run(["pip", "install", "python-ffmpeg"])
