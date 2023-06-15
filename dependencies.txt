@@ -1,0 +1,7 @@
+openai
+gradio
+soundfile
+pydub
+os
+numpy
+subprocess
