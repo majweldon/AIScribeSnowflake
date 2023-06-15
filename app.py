@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import subprocess
-subprocess.run(["ls"])
+subprocess.run(["apt update"])
 subprocess.run(["pip", "install", "openai"])
 subprocess.run(["pip", "install", "soundfile"])
 subprocess.run(["pip", "install", "python-ffmpeg"])
