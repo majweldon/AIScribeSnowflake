@@ -1,3 +1,0 @@
-python3-pip
-libsndfile1
-ffmpeg
