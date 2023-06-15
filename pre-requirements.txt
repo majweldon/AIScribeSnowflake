@@ -1,1 +1,1 @@
-pip_version: 23.2.1
+pip_version: 23.1.2
