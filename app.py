@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+wtf wtf wtf wtf
 
 import subprocess
 subprocess.run(["apt update"])
