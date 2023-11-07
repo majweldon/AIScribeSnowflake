@@ -8,6 +8,7 @@ subprocess.run(["pip", "install", "python-ffmpeg"])
 
 import os
 import openai
+from openai import OpenAI
 import time
 from numpy import True_
 import gradio as gr
