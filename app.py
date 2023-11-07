@@ -15,11 +15,10 @@ import gradio as gr
 import soundfile as sf
 from pydub import AudioSegment
 
-client = OpenAI()
-
-# Load your API key from an environment variable or secret management service
+# Load API key from an environment variable
 openai.api_key = os.environ.get('OPENAI_SECRET_KEY')
 
+client = OpenAI()
 note_transcript = ""
 
 
