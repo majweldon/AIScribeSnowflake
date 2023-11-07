@@ -8,7 +8,6 @@ subprocess.run(["pip", "install", "python-ffmpeg"])
 
 import os
 import openai
-from openai import OpenAI
 import time
 from numpy import True_
 import gradio as gr
@@ -18,7 +17,7 @@ from pydub import AudioSegment
 # Load API key from an environment variable
 openai.api_key = os.environ.get('OPENAI_SECRET_KEY')
 
-client = OpenAI(openai.api_key)
+
 note_transcript = ""
 
 
@@ -63,8 +62,8 @@ def transcribe(audio, history_type):
   attempt = 0
   while attempt < max_attempts:
       try:
-          ##audio_transcript = openai.Audio.transcribe("whisper-1", audio_file)
-          audio_transcript = client.audio.transcriptions.create(model="whisper-1", file=audio_file)
+          audio_transcript = openai.Audio.transcribe("whisper-1", audio_file)
+          ##audio_transcript = client.audio.transcriptions.create(model="whisper-1", file=audio_file)
           break
       except openai.error.APIConnectionError as e:
           print(f"Attempt {attempt + 1} failed with error: {e}")
