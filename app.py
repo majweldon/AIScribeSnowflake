@@ -61,9 +61,7 @@ def transcribe(audio, history_type):
   attempt = 0
   while attempt < max_attempts:
       try:
-          ##audio_transcript = openai.Audio.transcribe("whisper-1", audio_file)
-          api_transcriber = openai.Transcriber()
-          audio_transcript = api_transcriber.transcribe("whisper-1", audio_file)
+          audio_transcript = openai.Audio.transcribe("whisper-1", audio_file)
           break
       except openai.error.APIConnectionError as e:
           print(f"Attempt {attempt + 1} failed with error: {e}")
