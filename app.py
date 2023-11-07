@@ -18,7 +18,7 @@ from pydub import AudioSegment
 # Load API key from an environment variable
 openai.api_key = os.environ.get('OPENAI_SECRET_KEY')
 
-client = OpenAI()
+client = OpenAI(openai.api_key)
 note_transcript = ""
 
 
