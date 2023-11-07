@@ -14,6 +14,8 @@ import gradio as gr
 import soundfile as sf
 from pydub import AudioSegment
 
+client = OpenAI()
+
 # Load your API key from an environment variable or secret management service
 openai.api_key = os.environ.get('OPENAI_SECRET_KEY')
 
@@ -61,7 +63,8 @@ def transcribe(audio, history_type):
   attempt = 0
   while attempt < max_attempts:
       try:
-          audio_transcript = openai.Audio.transcribe("whisper-1", audio_file)
+          ##audio_transcript = openai.Audio.transcribe("whisper-1", audio_file)
+          audio_transcript = client.audio.transcriptions.create(model="whisper-1", file=audio_file)
           break
       except openai.error.APIConnectionError as e:
           print(f"Attempt {attempt + 1} failed with error: {e}")
