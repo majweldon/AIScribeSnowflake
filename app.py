@@ -100,10 +100,10 @@ def transcribe(audio, history_type):
   # 0.28.1 note_transcript = (response["choices"][0]["message"]["content"])
   
   ## 1.1.1  
-    response = client.chat.completions.create(model="gpt-3.5-turbo-1106", temperature=0, messages=messages)
-    note_transcript = response.choices[0].message.content
+  response = client.chat.completions.create(model="gpt-3.5-turbo-1106", temperature=0, messages=messages)
+  note_transcript = response.choices[0].message.content
 
-    print(note_transcript)
+  print(note_transcript)
   return [note_transcript, num_words,mp3_megabytes]
 
 #Define Gradio Interface
