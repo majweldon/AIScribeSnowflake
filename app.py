@@ -10,11 +10,9 @@ from pydub import AudioSegment
 
 from openai import OpenAI
 
-OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
-
-client = OpenAI(
-    api_key = OPENAI_API_KEY
-)
+# Load API key from an environment variable
+OPENAI_SECRET_KEY = os.environ.get("OPENAI_SECRET_KEY")
+client = OpenAI(api_key = OPENAI_SECRET_KEY)
 
 
 # Load API key from an environment variable
