@@ -74,7 +74,8 @@ def transcribe(audio, history_type):
       print("Failed to transcribe audio after multiple attempts")  
     
   print(audio_transcript)
-  messages.append({"role": "user", "content": audio_transcript["text"]})
+  #messages.append({"role": "user", "content": audio_transcript["text"]})
+  messages.append({"role": "user", "content": audio_transcript.choices[0].message.content})
   
   #Create Sample Dialogue Transcript from File (for debugging)
   #with open('Audio_Files/Test_Elbow.txt', 'r') as file:
