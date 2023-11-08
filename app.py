@@ -75,7 +75,7 @@ def transcribe(audio, history_type):
     
   print(audio_transcript)
   #messages.append({"role": "user", "content": audio_transcript["text"]})
-  messages.append({"role": "user", "content": audio_transcript.choices[0].message.content})
+  messages.append({"role": "user", "content": audio_transcript["text"]})
   
   #Create Sample Dialogue Transcript from File (for debugging)
   #with open('Audio_Files/Test_Elbow.txt', 'r') as file:
