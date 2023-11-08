@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-import subprocess
+##import subprocess
 ##subprocess.run(["pip", "install", "openai==0.28.1"])
-subprocess.run(["pip", "install", "soundfile"])
-subprocess.run(["pip", "install", "python-ffmpeg"])
+##subprocess.run(["pip", "install", "soundfile"])
+##subprocess.run(["pip", "install", "python-ffmpeg"])
 
 
 import os
