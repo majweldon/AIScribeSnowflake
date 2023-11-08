@@ -1,1 +1,3 @@
 openai==0.28.1
+soundfile
+python-ffmpeg
