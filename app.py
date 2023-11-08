@@ -10,7 +10,7 @@ from pydub import AudioSegment
 
 from openai import OpenAI
 
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 
 client = OpenAI(
     api_key = OPENAI_API_KEY
@@ -96,7 +96,7 @@ def transcribe(audio, history_type):
 
 
   #Ask OpenAI to create note transcript
-  response = openai.ChatCompletion.create(model="gpt-4-1106-preview", temperature=0, messages=messages)
+  response = openai.ChatCompletion.create(model="gpt-3.5-turbo-1106", temperature=0, messages=messages)
   note_transcript = (response["choices"][0]["message"]["content"])
   print(note_transcript)
   return [note_transcript, num_words,mp3_megabytes]
