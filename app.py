@@ -73,7 +73,7 @@ def transcribe(audio, history_type):
   else:
       print("Failed to transcribe audio after multiple attempts")  
     
-  print(audio_transcript)
+  print(audio_transcript.text)
   #messages.append({"role": "user", "content": audio_transcript["text"]})
   messages.append({"role": "user", "content": audio_transcript.text})
   
@@ -88,16 +88,22 @@ def transcribe(audio, history_type):
   mp3_megabytes = file_size / (1024 * 1024)
   mp3_megabytes = round(mp3_megabytes, 2)
 
-  audio_transcript_words = audio_transcript["text"].split() # Use when using mic input
+  audio_transcript_words = audio_transcript.text.split() # Use when using mic input
   #audio_transcript_words = audio_transcript.split() #Use when using file
 
   num_words = len(audio_transcript_words)
 
 
   #Ask OpenAI to create note transcript
-  response = openai.ChatCompletion.create(model="gpt-3.5-turbo-1106", temperature=0, messages=messages)
-  note_transcript = (response["choices"][0]["message"]["content"])
-  print(note_transcript)
+  
+  # 0.28.1 response = openai.ChatCompletion.create(model="gpt-3.5-turbo-1106", temperature=0, messages=messages)
+  # 0.28.1 note_transcript = (response["choices"][0]["message"]["content"])
+  
+  ## 1.1.1  
+    response = client.chat.completions.create(model="gpt-3.5-turbo-1106", temperature=0, messages=messages)
+    note_transcript = response.choices[0].message.content
+
+    print(note_transcript)
   return [note_transcript, num_words,mp3_megabytes]
 
 #Define Gradio Interface
