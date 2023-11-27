@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import os
 import openai
 import time
@@ -14,13 +12,7 @@ from openai import OpenAI
 OPENAI_SECRET_KEY = os.environ.get("OPENAI_SECRET_KEY")
 client = OpenAI(api_key = OPENAI_SECRET_KEY)
 
-
-# Load API key from an environment variable
-## openai.api_key = os.environ.get('OPENAI_SECRET_KEY')
-
-
 note_transcript = ""
-
 
 def transcribe(audio, history_type):
   global note_transcript    
@@ -55,7 +47,7 @@ def transcribe(audio, history_type):
   sound.export("Audio_Files/test.mp3", format="mp3")
 
 
-  #Send file to Whisper for Trans"cription
+  #Send file to Whisper for Transcription
   audio_file = open("Audio_Files/test.mp3", "rb")
   
     
@@ -95,10 +87,6 @@ def transcribe(audio, history_type):
 
 
   #Ask OpenAI to create note transcript
-  
-  # 0.28.1 response = openai.ChatCompletion.create(model="gpt-3.5-turbo-1106", temperature=0, messages=messages)
-  # 0.28.1 note_transcript = (response["choices"][0]["message"]["content"])
-  
   ## 1.1.1  
   response = client.chat.completions.create(model="gpt-3.5-turbo-1106", temperature=0, messages=messages)
   note_transcript = response.choices[0].message.content
