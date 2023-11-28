@@ -39,9 +39,9 @@ def transcribe(audio, history_type):
   # audio_data, samplerate = sf.read(audio)
   
     
-  sample_rate, audio_data = audio
+  samplerate, audio_data = audio
   # Print the sample rate
-  print("Sample rate:", sample_rate)
+  print("Sample rate:", samplerate)
   #Print first 5 samples
   first_five_samples = audio_data[:5]
   print("First 5 samples:", first_five_samples)
