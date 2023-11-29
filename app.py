@@ -34,20 +34,13 @@ def transcribe(audio, history_type):
     
   messages = [{"role": "system", "content": role}]
 
-  ###### Create Dialogue Transcript from Audio Recording and Append(via Whisper)
-  # Load the audio file (from filepath)
-  # audio_data, samplerate = sf.read(audio)
+  ################# Create Dialogue Transcript from Audio Recording and Append(via Whisper)
   
-    
-  samplerate, audio_data = audio
-  # Print the sample rate
-  print("Sample rate:", samplerate)
-  #Print first 5 samples
-  first_five_samples = audio_data[:5]
-  print("First 5 samples:", first_five_samples)
-
-
   
+  # audio_data, samplerate = sf.read(audio) # read audio from filepath
+  samplerate, audio_data = audio  # read audio from numpy array
+
+ 
   #### Massage .wav and save as .mp3
   #audio_data = audio_data.astype("float32")
   #audio_data = (audio_data * 32767).astype("int16")
@@ -57,7 +50,7 @@ def transcribe(audio, history_type):
   sound.export("Audio_Files/test.mp3", format="mp3")
 
 
-  #Send file to Whisper for Transcription
+  ################  Send file to Whisper for Transcription
   audio_file = open("Audio_Files/test.mp3", "rb")
   
     
