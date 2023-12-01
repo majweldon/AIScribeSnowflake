@@ -28,7 +28,7 @@ def transcribe(audio, history_type):
       "Cooper": "Cooper_Sports_Consult_History.txt"
    }
     
-  file_name = history_type_map.get(history_type, "Weldon_History_Physical_Format.txt")
+  file_name = history_type_map.get(history_type, "Weldon_Full_Visit_Format.txt")
   with open(f"Format_Library/{file_name}", "r") as f:
       role = f.read()
     
