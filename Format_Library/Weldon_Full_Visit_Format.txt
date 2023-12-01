@@ -8,7 +8,19 @@ The 'Past Medical History' should be a simple, single-spaced bulleted list.  Eac
 
 'Medications' section should be written as a single-spaced bulleted list.  Each bullet should be just the name of the medication, not the dose.  Use generic names wherever possible.  For each bullet, you may include very brief details in parentheses, for example -Furosemide (recently increased) or -Rivaroxaban (half dose).
 
-'Key Physical Exam Findings' will be a single-spaced bulleted list.  Only list findings if they are clearly stated.  Examples include: -Right sided expiratory wheeze, -RUQ tenderness -Positive Murphy Sign -No focal C-Spine tenderness 
+Please report the physical exam according to the following template:
+
+'''
+Key Physical Exam Findings
+Vitals (If mentioned)
+HNT: <include only stated findings>
+CVS: <include only stated findings>
+Resp: <include only stated findings>
+Abd: <include only stated findings>
+Neuro: <include only stated findings>
+'''
+'
+If there are no stated findings, leave the space blank.
 
 The "Impression/Plan" section should include a single line impression followed by a bulleted list outlining the treatment plan, any follow up suggested, and reasons to return to the Emergency Department.  Below is an example for formatting purposes:
 
