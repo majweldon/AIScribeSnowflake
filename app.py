@@ -37,8 +37,8 @@ def transcribe(audio, history_type):
   ################# Create Dialogue Transcript from Audio Recording and Append(via Whisper)
   
   
-  #audio_data, samplerate = sf.read(audio) # read audio from filepath
-  samplerate, audio_data = audio  # read audio from numpy array
+  audio_data, samplerate = sf.read(audio) # read audio from filepath
+  #samplerate, audio_data = audio  # read audio from numpy array
 
  
   ########## Cast as float 32, normalize
@@ -103,8 +103,8 @@ def transcribe(audio, history_type):
 
 #Define Gradio Interface
 my_inputs = [
-    gr.Audio(sources=["microphone"], type="numpy"),
-    #gr.Audio(sources=["microphone"],type="numpy"),
+    #gr.Audio(source="microphone", type="filepath"), #Gradio 3.48.0
+    #gr.Audio(sources=["microphone"],type="numpy"), #Gradio 4.7.1
     gr.Radio(["Cooper","Weldon","Ortlieb","Leinweber","Impression/Plan","Handover","Triage","Meds Only"], show_label=False),
 ]
 
