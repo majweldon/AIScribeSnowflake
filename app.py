@@ -17,15 +17,16 @@ note_transcript = ""
 def transcribe(audio, history_type):
   global note_transcript    
   history_type_map = {
-      "Weldon": "Weldon_Full_Visit_Format.txt",
+      "History": "Weldon_History_Format.txt",
+      "Physical": "Weldon_PE_Note_Format.txt",
+      "H+P": "Weldon_History_Physical_Format.txt",
       "Impression/Plan": "Weldon_Impression_Note_Format.txt",
       "Handover": "Weldon_Handover_Note_Format.txt",
       "Meds Only": "Medications.txt",
       "EMS": "EMS_Handover_Note_Format.txt",
       "Triage": "Triage_Note_Format.txt",
-      "Ortlieb": "Ortlieb_Note_Format.txt",
-      "Leinweber": "Leinweber_Note_Format.txt",
-      "Cooper": "Cooper_Sports_Consult_History.txt"
+      "Full Visit": "Weldon_Full_Visit_Format.txt",
+      "Psych": "Weldon_Psych_Format.txt"
    }
     
   file_name = history_type_map.get(history_type, "Weldon_Full_Visit_Format.txt")
