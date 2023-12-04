@@ -37,17 +37,21 @@ def transcribe(audio, history_type):
   ################# Create Dialogue Transcript from Audio Recording and Append(via Whisper)
   
   
-  # audio_data, samplerate = sf.read(audio) # read audio from filepath
-  samplerate, audio_data = audio  # read audio from numpy array
+  audio_data, samplerate = sf.read(audio) # read audio from filepath
+  #samplerate, audio_data = audio  # read audio from numpy array
 
  
-  #### Massage .wav and save as .mp3
+  ########## Cast as float 32, normalize
   #audio_data = audio_data.astype("float32")
   #audio_data = (audio_data * 32767).astype("int16")
   #audio_data = audio_data.mean(axis=1)
-  sf.write("Audio_Files/test.wav", audio_data, samplerate, subtype='PCM_16')
-  sound = AudioSegment.from_wav("Audio_Files/test.wav")
-  sound.export("Audio_Files/test.mp3", format="mp3")
+
+  sf.write("Audio_Files/test.mp3", audio_data, samplerate)
+    
+  ###################Code to convert .wav to .mp3
+  #sf.write("Audio_Files/test.wav", audio_data, samplerate, subtype='PCM_16')
+  #sound = AudioSegment.from_wav("Audio_Files/test.wav")
+  #sound.export("Audio_Files/test.mp3", format="mp3")
 
 
   ################  Send file to Whisper for Transcription
@@ -99,8 +103,8 @@ def transcribe(audio, history_type):
 
 #Define Gradio Interface
 my_inputs = [
-    #gr.Audio(source="microphone", type="filepath"),
-    gr.Audio(sources=["microphone"],type="numpy"),
+    gr.Audio(sources=["microphone"], type="filepath",format="mp3"),
+    #gr.Audio(sources=["microphone"],type="numpy"),
     gr.Radio(["Cooper","Weldon","Ortlieb","Leinweber","Impression/Plan","Handover","Triage","Meds Only"], show_label=False),
 ]
 
