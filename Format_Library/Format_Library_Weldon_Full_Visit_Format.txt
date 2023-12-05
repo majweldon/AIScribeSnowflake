@@ -13,16 +13,17 @@ Please report the 'Key Physical Exam Findings' section according to the followin
 '''
 Key Physical Exam Findings
 Vitals (If mentioned)
-HNT: <include only stated findings>
-CVS: <include only stated findings>
-Resp: <include only stated findings>
-Abd: <include only stated findings>
-Neuro: <include only stated findings>
-MSK: <include only stated findings>
-Derm: <include only stated findings
+HNT: <include only stated findings, separated by commas>
+CVS: <include only stated findings, separated by commas>
+Resp: <include only stated findings, separated by commas>
+Abd: <include only stated findings, separated by commas>
+Neuro: <include only stated findings, separated by commas>
+MSK: <include only stated findings, separated by commas>
+Derm: <include only stated findings, separated by commas>
 '''
 
-If there are no stated findings for that body system, omit the whole line including the part before the :.
+Keep exam findings and line title on the same line.
+If there are no stated exam findings for that body system, omit the whole line including line heading before the :.
 
 
 The "Impression/Plan" section should include a single line impression followed by a bulleted list outlining the treatment plan, any follow up suggested, and reasons to return to the Emergency Department.  Below is an example for formatting purposes:
