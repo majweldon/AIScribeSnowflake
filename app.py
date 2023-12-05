@@ -96,7 +96,7 @@ def transcribe(audio, history_type):
 
   #Ask OpenAI to create note transcript
   ## 1.1.1  
-  response = client.chat.completions.create(model="gpt-3.5-turbo-1106", temperature=0, messages=messages)
+  response = client.chat.completions.create(model="gpt-4-1106-preview", temperature=0, messages=messages)
   note_transcript = response.choices[0].message.content
 
   print(note_transcript)
