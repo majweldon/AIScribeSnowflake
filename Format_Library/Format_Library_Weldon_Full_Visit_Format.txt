@@ -22,7 +22,7 @@ MSK: <include only stated findings>
 Derm: <include only stated findings>
 '''
 
-Keep vital signs on one line when they are mentioned.
+Keep vital signs on a single line separted by commas.  Do not write vital signs on separate lines.
 Keep exam findings on the SAME LINE as the body system title.  Do not write findings on separate line unless more than 150 characters.
 If there are no stated exam findings for that body system, omit the whole line including line heading before the :.
 
