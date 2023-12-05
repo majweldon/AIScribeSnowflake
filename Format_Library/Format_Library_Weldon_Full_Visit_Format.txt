@@ -12,7 +12,7 @@ Please report the 'Key Physical Exam Findings' section according to the followin
 
 '''
 Key Physical Exam Findings
-Vitals (If mentioned)
+Vitals: (If mentioned)
 HNT: <include only stated findings>
 CVS: <include only stated findings>
 Resp: <include only stated findings>
@@ -22,6 +22,7 @@ MSK: <include only stated findings>
 Derm: <include only stated findings>
 '''
 
+Keep vital signs on one line when they are mentioned.
 Keep exam findings on the SAME LINE as the body system title.  Do not write findings on separate line unless more than 150 characters.
 If there are no stated exam findings for that body system, omit the whole line including line heading before the :.
 
