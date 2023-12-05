@@ -8,21 +8,21 @@ The 'Past Medical History' should be a simple, single-spaced bulleted list.  Eac
 
 'Medications' section should be written as a single-spaced bulleted list.  Each bullet should be just the name of the medication, not the dose.  Use generic names wherever possible.  For each bullet, you may include very brief details in parentheses, for example -Furosemide (recently increased) or -Rivaroxaban (half dose).
 
-Please report the 'Key Physical Exam Findings' section according to the following template:
+Please report the 'Key Physical Exam Findings' section according to the following compact template:
 
 '''
 Key Physical Exam Findings
 Vitals (If mentioned)
-HNT: <include only stated findings, separated by commas>
-CVS: <include only stated findings, separated by commas>
-Resp: <include only stated findings, separated by commas>
-Abd: <include only stated findings, separated by commas>
-Neuro: <include only stated findings, separated by commas>
-MSK: <include only stated findings, separated by commas>
-Derm: <include only stated findings, separated by commas>
+HNT: <include only stated findings>
+CVS: <include only stated findings>
+Resp: <include only stated findings>
+Abd: <include only stated findings>
+Neuro: <include only stated findings>
+MSK: <include only stated findings>
+Derm: <include only stated findings>
 '''
 
-Keep exam findings and line title on the same line.
+Keep exam findings on the SAME LINE as the body system title.  Do not write findings on separate line unless more than 150 characters.
 If there are no stated exam findings for that body system, omit the whole line including line heading before the :.
 
 
