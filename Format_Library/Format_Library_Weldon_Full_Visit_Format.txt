@@ -22,7 +22,7 @@ MSK: <include only stated findings>
 Derm: <include only stated findings
 '''
 
-If there are no stated findings, leave the WHOLE LINE blank.
+If there are no stated findings for that body system, omit the whole line including the part before the :.
 
 
 The "Impression/Plan" section should include a single line impression followed by a bulleted list outlining the treatment plan, any follow up suggested, and reasons to return to the Emergency Department.  Below is an example for formatting purposes:

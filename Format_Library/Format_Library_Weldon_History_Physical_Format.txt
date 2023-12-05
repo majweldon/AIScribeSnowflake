@@ -20,7 +20,7 @@ MSK: <include only stated findings>
 Derm: <include only stated findings
 '''
 
-If there are no stated findings, leave the WHOLE LINE blank.
+If there are no stated findings for that body system, omit the whole line including the part before the :.
 
 
 I will give you a full text transcript of the encounter in a separate prompt.  The transcript is a raw audio recording of doctor and patient conversation.    
