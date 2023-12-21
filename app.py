@@ -26,7 +26,8 @@ def transcribe(audio, history_type):
       "EMS": "EMS_Handover_Note_Format.txt",
       "Triage": "Triage_Note_Format.txt",
       "Full Visit": "Weldon_Full_Visit_Format.txt",
-      "Psych": "Weldon_Psych_Format.txt"
+      "Psych": "Weldon_Psych_Format.txt",
+      "SBAR": "SBAR.txt"
    }
     
   file_name = history_type_map.get(history_type, "Weldon_Full_Visit_Format.txt")
@@ -106,7 +107,7 @@ def transcribe(audio, history_type):
 my_inputs = [
     gr.Audio(source="microphone", type="filepath"), #Gradio 3.48.0
     #gr.Audio(sources=["microphone"],type="numpy"), #Gradio 4.7.1
-    gr.Radio(["History","H+P","Impression/Plan","Full Visit","Handover","Psych","EMS","Meds Only"], show_label=False),
+    gr.Radio(["History","H+P","Impression/Plan","Full Visit","Handover","Psych","EMS","SBAR","Meds Only"], show_label=False),
 ]
 
 ui = gr.Interface(fn=transcribe, 
