@@ -2,3 +2,5 @@ openai==1.1.1
 soundfile
 python-ffmpeg
 gradio==3.48.0
+mistralai
+llama-index
