@@ -8,11 +8,21 @@ from pydub import AudioSegment
 
 from openai import OpenAI
 
-# Load API key from an environment variable
+from mistralai.client import MistralClient
+from mistralai.models.chat_completion import ChatMessage
+
+
+# Load API keys from an environment variables
 OPENAI_SECRET_KEY = os.environ.get("OPENAI_SECRET_KEY")
+api_key = os.environ["MISTRAL_API_KEY"]
+mistral_model = "mistral-tiny"
+
 client = OpenAI(api_key = OPENAI_SECRET_KEY)
+mistral_client = MistralClient(api_key=api_key)
+
 
 note_transcript = ""
+mistral_note_transcript = ""
 
 def transcribe(audio, history_type):
   global note_transcript    
@@ -35,10 +45,11 @@ def transcribe(audio, history_type):
       role = f.read()
     
   messages = [{"role": "system", "content": role}]
+  mistral_messages = [ChatMessage(role="system", content=role)]
+
 
   ################# Create Dialogue Transcript from Audio Recording and Append(via Whisper)
-  
-  
+    
   audio_data, samplerate = sf.read(audio) # read audio from filepath
   #samplerate, audio_data = audio  # read audio from numpy array
 
@@ -64,7 +75,6 @@ def transcribe(audio, history_type):
   attempt = 0
   while attempt < max_attempts:
       try:
-          #audio_transcript = openai.Audio.transcribe("whisper-1", audio_file)
           audio_transcript = client.audio.transcriptions.create(model="whisper-1", file=audio_file)
           break
       except openai.error.APIConnectionError as e:
@@ -75,23 +85,18 @@ def transcribe(audio, history_type):
       print("Failed to transcribe audio after multiple attempts")  
     
   print(audio_transcript.text)
-  #messages.append({"role": "user", "content": audio_transcript["text"]})
   messages.append({"role": "user", "content": audio_transcript.text})
-  
-  #Create Sample Dialogue Transcript from File (for debugging)
-  #with open('Audio_Files/Test_Elbow.txt', 'r') as file:
-  #  audio_transcript = file.read()
-  #messages.append({"role": "user", "content": audio_transcript})
-  
 
+  mistral_messages.append(ChatMessage(role="user", content=audio_transcript.text))
+
+
+  
   ### Word and MB Count
   file_size = os.path.getsize("Audio_Files/test.mp3")
   mp3_megabytes = file_size / (1024 * 1024)
   mp3_megabytes = round(mp3_megabytes, 2)
 
   audio_transcript_words = audio_transcript.text.split() # Use when using mic input
-  #audio_transcript_words = audio_transcript.split() #Use when using file
-
   num_words = len(audio_transcript_words)
 
 
@@ -100,10 +105,25 @@ def transcribe(audio, history_type):
   response = client.chat.completions.create(model="gpt-4-1106-preview", temperature=0, messages=messages)
   note_transcript = response.choices[0].message.content
 
-  print(note_transcript)
-  return [note_transcript, num_words,mp3_megabytes]
+  print("\n\n" + note_transcript + "\n\n")
 
-#Define Gradio Interface
+
+
+
+  #Ask Mistral to create note transcript
+  ## 0.0.1
+  mistral_response = mistral_client.chat(model=mistral_model, temperature=0, messages=mistral_messages)
+  mistral_note_transcript = mistral_response.choices[0].message.content
+
+  print (mistral_note_transcript)
+
+
+  return [note_transcript, mistral_note_transcript, mp3_megabytes]
+
+
+
+
+###################### Define Gradio Interface ######################
 my_inputs = [
     gr.Audio(source="microphone", type="filepath"), #Gradio 3.48.0
     #gr.Audio(sources=["microphone"],type="numpy"), #Gradio 4.7.1
@@ -112,8 +132,8 @@ my_inputs = [
 
 ui = gr.Interface(fn=transcribe, 
                   inputs=my_inputs, 
-                  outputs=[gr.Textbox(label="Your Note", show_copy_button=True),
-                           gr.Number(label="Audio Word Count"),
+                  outputs=[gr.Textbox(label="OpenAI Note", show_copy_button=True),
+                           gr.Textbox(label="MistralAI Note", show_copy_button=True),
                            gr.Number(label=".mp3 MB")])
 
 
