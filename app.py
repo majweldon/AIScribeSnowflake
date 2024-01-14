@@ -15,7 +15,7 @@ from mistralai.models.chat_completion import ChatMessage
 # Load API keys from an environment variables
 OPENAI_SECRET_KEY = os.environ.get("OPENAI_SECRET_KEY")
 api_key = os.environ["MISTRAL_API_KEY"]
-mistral_model = "mistral-tiny"
+mistral_model = "mistral-small"
 
 client = OpenAI(api_key = OPENAI_SECRET_KEY)
 mistral_client = MistralClient(api_key=api_key)
