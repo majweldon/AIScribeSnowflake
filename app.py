@@ -13,7 +13,6 @@ import replicate
 # Load API keys from an environment variables
 OPENAI_SECRET_KEY = os.environ.get("OPENAI_SECRET_KEY")
 REPLICATE_API_KEY = os.environ.get("REPLICATE_API_TOKEN")
-subprocess.run("export REPLICATE_API_TOKEN=REPLICATE_API_KEY")
 
 #api_key = os.environ["MISTRAL_API_KEY"]
 #mistral_model = "mistral-tiny"
