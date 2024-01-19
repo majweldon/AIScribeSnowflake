@@ -4,3 +4,4 @@ python-ffmpeg
 gradio==3.48.0
 mistralai
 llama-index
+replicate
