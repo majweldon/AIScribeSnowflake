@@ -11,13 +11,13 @@ from openai import OpenAI
 import replicate
 
 # Load API keys from an environment variables
-OPENAI_SECRET_KEY = os.environ.get("OPENAI_SECRET_KEY")
-REPLICATE_API_KEY = os.environ.get("REPLICATE_API_TOKEN")
+# OPENAI_SECRET_KEY = os.environ.get("OPENAI_SECRET_KEY")
+# REPLICATE_API_KEY = os.environ.get("REPLICATE_API_TOKEN")
 
 #api_key = os.environ["MISTRAL_API_KEY"]
 #mistral_model = "mistral-tiny"
 
-client = OpenAI(api_key = OPENAI_SECRET_KEY)
+# client = OpenAI(api_key = OPENAI_SECRET_KEY)
 #mistral_client = MistralClient(api_key=api_key)
 
 
@@ -102,10 +102,10 @@ def transcribe(audio, history_type):
 
   #Ask OpenAI to create note transcript
   ## 1.1.1
-  response = client.chat.completions.create(model="gpt-4-1106-preview", temperature=0, messages=messages)
-  note_transcript = response.choices[0].message.content
+#   response = client.chat.completions.create(model="gpt-4-1106-preview", temperature=0, messages=messages)
+#   note_transcript = response.choices[0].message.content
 
-  print("\n\n" + note_transcript + "\n\n")
+#   print("\n\n" + note_transcript + "\n\n")
 
 
   #Ask Mistral to create note transcript
@@ -115,26 +115,26 @@ def transcribe(audio, history_type):
   #print (mistral_note_transcript)
 
   #Ask LLaMA2 (via Replicate) to create note transcript
-  llama_output = replicate.run(
-    #"meta/llama-2-7b-chat:f1d50bb24186c52daae319ca8366e53debdaa9e0ae7ff976e918df752732ccc4",
-    "meta/llama-2-70b-chat:2d19859030ff705a87c746f7e96eea03aefb71f166725aee39692f1476566d48",
-    input={
-        "debug": False,
-        "top_p": 1,
-        "prompt": audio_transcript.text,
-        "temperature": 0.01,
-        "system_prompt": role,
-        "max_new_tokens": 500,
-        "min_new_tokens": -1
-    }
-  )
-  llama_note_transcript = ""
-  for item in llama_output:
-    llama_note_transcript += item
-  print(llama_note_transcript)
+#   llama_output = replicate.run(
+#     #"meta/llama-2-7b-chat:f1d50bb24186c52daae319ca8366e53debdaa9e0ae7ff976e918df752732ccc4",
+#     "meta/llama-2-70b-chat:2d19859030ff705a87c746f7e96eea03aefb71f166725aee39692f1476566d48",
+#     input={
+#         "debug": False,
+#         "top_p": 1,
+#         "prompt": audio_transcript.text,
+#         "temperature": 0.01,
+#         "system_prompt": role,
+#         "max_new_tokens": 500,
+#         "min_new_tokens": -1
+#     }
+#   )
+#   llama_note_transcript = ""
+#   for item in llama_output:
+#     llama_note_transcript += item
+#   print(llama_note_transcript)
 
 
-  return [note_transcript, llama_note_transcript, mp3_megabytes]
+#   return [note_transcript, llama_note_transcript, mp3_megabytes]
 
 
 
