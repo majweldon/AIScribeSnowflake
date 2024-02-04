@@ -39,10 +39,8 @@ def transcribe(audio, request: gr.Request):
   # audio_transcript_words = audio_transcript.text.split() # Use when using mic input
   # num_words = len(audio_transcript_words)
   headers = request.headers
-  sf_user = request.headers["Sf-Context-Current-User"]
-  print(headers)
-  print(sf_user)
-
+  sf_user = headers["Sf-Context-Current-User"]
+  
   return [note_transcript, mp3_megabytes, sf_user]
 
 ###################### Define Gradio Interface ######################
@@ -64,5 +62,4 @@ ui = gr.Interface(fn=transcribe,
                   description="Demo of Jenkins running in Snowpark Container Services (SCS), using a Whisper and Llama2 service!"
                            )
 
-#ui.launch(share=False, debug=True)
 ui.launch(share=False, debug=True, server_name="0.0.0.0", server_port=7860)
