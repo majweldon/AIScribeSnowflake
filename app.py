@@ -44,7 +44,17 @@ my_inputs = [
 ui = gr.Interface(fn=transcribe,
                   inputs=my_inputs,
                   outputs=[gr.Textbox(label="Whisper Transcription", show_copy_button=True),
-                           gr.Number(label=".mp3 MB")])
+                           gr.Number(label=".mp3 MB")],         
+                  examples=[
+                  ["Current User", gr.Request]],
+                  title="Jenkins in Snowflake",
+                  description="Demo of Jenkins running in Snowpark Container Services (SCS), using a Whisper and Llama2 service"
+                           )
 
 #ui.launch(share=False, debug=True)
 ui.launch(share=False, debug=True, server_name="0.0.0.0", server_port=7860)
+
+def test(name, request: gr.Request):
+  print(request.headers)
+  return name
+
