@@ -61,7 +61,7 @@ ui = gr.Interface(fn=transcribe,
                            gr.Textbox(label="User")
                            ],
                   title="Jenkins in Snowflake",
-                  description="Demo of Jenkins running in Snowpark Container Services (SCS), using a Whisper and Llama2 service"
+                  description="Demo of Jenkins running in Snowpark Container Services (SCS), using a Whisper and Llama2 service!"
                            )
 
 #ui.launch(share=False, debug=True)
