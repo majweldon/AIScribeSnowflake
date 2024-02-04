@@ -18,11 +18,11 @@ def transcribe(audio):
     
   ###################Code to convert .wav to .mp3
   sf.write("audio_files/test.wav", audio_data, samplerate, subtype='PCM_16')
-  sound = AudioSegment.from_wav("Audio_Files/test.wav")
+  sound = AudioSegment.from_wav("audio_files/test.wav")
   sound.export("audio_files/test.mp3", format="mp3")
 
-  scs_whisper_service = 'whisper_app'
-  response = requests.get(f'{scs_whisper_service}')
+  scs_whisper_service = 'whisper_app' 
+  response = requests.get(f'{scs_whisper_service}') 
   print(response.text)
   
   # ################  Send file to Whisper for Transcription
