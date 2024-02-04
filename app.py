@@ -21,9 +21,9 @@ def transcribe(audio):
   sound = AudioSegment.from_wav("audio_files/test.wav")
   sound.export("audio_files/test.mp3", format="mp3")
 
-  scs_whisper_service = 'https://whisper-app.kl-test-jenkins.db-team-jenkins.snowflakecomputing.internal' 
-  response = requests.get(f'{scs_whisper_service}') 
-  print(response.text)
+  # scs_whisper_service = 'https://whisper-app.kl-test-jenkins.db-team-jenkins.snowflakecomputing.internal' 
+  # response = requests.get(f'{scs_whisper_service}') 
+  # print(response.text)
   
   # ################  Send file to Whisper for Transcription
   # snowflake_whisper_service = 'whisper_app'
@@ -40,7 +40,7 @@ def transcribe(audio):
   # num_words = len(audio_transcript_words)
 
 
-  return [note_transcript, mp3_megabytes, response.text]
+  return [note_transcript, mp3_megabytes]
 
 ###################### Define Gradio Interface ######################
 my_inputs = [
@@ -53,8 +53,8 @@ my_inputs = [
 ui = gr.Interface(fn=transcribe,
                   inputs=my_inputs,
                   outputs=[gr.Textbox(label="Whisper Transcription", show_copy_button=True),
-                           gr.Number(label=".mp3 MB"),
-                           gr.Textbox(label="Whisper Test")
+                           gr.Number(label=".mp3 MB")
+                           #gr.Textbox(label="Whisper Test")
                            ],
                   title="Jenkins in Snowflake",
                   description="Demo of Jenkins running in Snowpark Container Services (SCS), using a Whisper and Llama2 service"
