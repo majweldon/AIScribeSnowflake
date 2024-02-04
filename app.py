@@ -4,6 +4,7 @@ from numpy import True_
 import gradio as gr
 import soundfile as sf
 from pydub import AudioSegment
+import requests
 
 note_transcript = ""
 
@@ -20,6 +21,10 @@ def transcribe(audio):
   sound = AudioSegment.from_wav("Audio_Files/test.wav")
   sound.export("audio_files/test.mp3", format="mp3")
 
+  scs_whisper_service = 'whisper_app'
+  response = requests.get(f'{scs_whisper_service}')
+  print(response.text)
+  
   # ################  Send file to Whisper for Transcription
   # snowflake_whisper_service = 'whisper_app'
 
@@ -34,9 +39,13 @@ def transcribe(audio):
   # audio_transcript_words = audio_transcript.text.split() # Use when using mic input
   # num_words = len(audio_transcript_words)
 
+
+  return [note_transcript, mp3_megabytes, response.text]
+
 ###################### Define Gradio Interface ######################
 my_inputs = [
     gr.Audio(source="microphone", type="filepath"), #Gradio 3.48.0
+    
     #gr.Audio(sources=["microphone"],type="numpy"), #Gradio 4.7.1
     #gr.Radio(["History","H+P","Impression/Plan","Full Visit","Handover","Psych","EMS","SBAR","Meds Only"], show_label=False),
 ]
@@ -44,17 +53,12 @@ my_inputs = [
 ui = gr.Interface(fn=transcribe,
                   inputs=my_inputs,
                   outputs=[gr.Textbox(label="Whisper Transcription", show_copy_button=True),
-                           gr.Number(label=".mp3 MB")],         
-                  examples=[
-                  ["Current User", gr.Request]],
+                           gr.Number(label=".mp3 MB"),
+                           gr.Textbox(label="Whisper Test")
+                           ],
                   title="Jenkins in Snowflake",
                   description="Demo of Jenkins running in Snowpark Container Services (SCS), using a Whisper and Llama2 service"
                            )
 
 #ui.launch(share=False, debug=True)
 ui.launch(share=False, debug=True, server_name="0.0.0.0", server_port=7860)
-
-def test(name, request: gr.Request):
-  print(request.headers)
-  return name
-
