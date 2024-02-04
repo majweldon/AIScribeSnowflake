@@ -9,9 +9,9 @@ import requests
 note_transcript = ""
 
 
-def transcribe(audio):
+def transcribe(audio, request: gr.Request):
   global note_transcript
-
+  
   ################# Create Dialogue Transcript from Audio Recording and Append(via Whisper)
 
   audio_data, samplerate = sf.read(audio) # read audio from filepath
@@ -38,14 +38,17 @@ def transcribe(audio):
 
   # audio_transcript_words = audio_transcript.text.split() # Use when using mic input
   # num_words = len(audio_transcript_words)
+  headers = request.headers
+  sf_user = request.headers["Sf-Context-Current-User"]
+  print(headers)
+  print(sf_user)
 
-
-  return [note_transcript, mp3_megabytes]
+  return [note_transcript, mp3_megabytes, sf_user]
 
 ###################### Define Gradio Interface ######################
 my_inputs = [
     gr.Audio(source="microphone", type="filepath"), #Gradio 3.48.0
-    
+    gr.Request(type="json"),
     #gr.Audio(sources=["microphone"],type="numpy"), #Gradio 4.7.1
     #gr.Radio(["History","H+P","Impression/Plan","Full Visit","Handover","Psych","EMS","SBAR","Meds Only"], show_label=False),
 ]
@@ -53,8 +56,9 @@ my_inputs = [
 ui = gr.Interface(fn=transcribe,
                   inputs=my_inputs,
                   outputs=[gr.Textbox(label="Whisper Transcription", show_copy_button=True),
-                           gr.Number(label=".mp3 MB")
+                           gr.Number(label=".mp3 MB"),
                            #gr.Textbox(label="Whisper Test")
+                           gr.Textbox(label="User")
                            ],
                   title="Jenkins in Snowflake",
                   description="Demo of Jenkins running in Snowpark Container Services (SCS), using a Whisper and Llama2 service"
