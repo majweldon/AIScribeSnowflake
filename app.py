@@ -41,7 +41,7 @@ def transcribe(audio, request: gr.Request):
   headers = request.headers
   sf_user = headers["Sf-Context-Current-User"]
   
-  return [note_transcript, mp3_megabytes, headers]
+  return [note_transcript, mp3_megabytes, sf_user]
 
 ###################### Define Gradio Interface ######################
 my_inputs = [
@@ -55,7 +55,7 @@ ui = gr.Interface(fn=transcribe,
                   outputs=[gr.Textbox(label="Whisper Transcription", show_copy_button=True),
                            gr.Number(label=".mp3 MB"),
                            #gr.Textbox(label="Whisper Test")
-                           gr.JSON(label="Headers")
+                           gr.Textbox(label="Snowflake User")
                            ],
                   title="Jenkins in Snowflake",
                   description="Demo of Jenkins running in Snowpark Container Services (SCS), using a Whisper and Llama2 service!"
