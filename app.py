@@ -21,10 +21,10 @@ def transcribe(audio, request: gr.Request):
   sound = AudioSegment.from_wav("audio_files/test.wav")
   sound.export("audio_files/test.mp3", format="mp3")
 
-  scs_whisper_service = 'https://whisper-app.kl-test-jenkins.db-team-jenkins.snowflakecomputing.internal' 
+  scs_whisper_service = 'http://whisper-app.kl-test-jenkins.db-team-jenkins.snowflakecomputing.internal' 
   response = requests.get(scs_whisper_service) 
-
-  
+  print(response.text)
+ 
   # ################  Send file to Whisper for Transcription
   # snowflake_whisper_service = 'whisper_app'
 
