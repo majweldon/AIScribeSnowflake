@@ -40,9 +40,7 @@ def transcribe(audio, request: gr.Request):
   logger.info(f'Calling {service_url}')
   datasend = {"audio_file_path" :"/audio_files/SampleMedDictation.mp3"}
   
-  whisper_response = requests.post(url=service_url,
-                           json=datasend,
-                           headers={"Content-Type": "application/json"})
+  whisper_response = requests.post(url=service_url, json=datasend)
   
   if whisper_response is None:
     logger.error('Received empty response from service ' + service_url)
