@@ -38,7 +38,7 @@ def transcribe(audio, request: gr.Request):
  
   service_url = 'http://whisper-app.kl-test-jenkins.db-team-jenkins.snowflakecomputing.internal:9000/transcripe_stage_audio' 
   logger.info(f'Calling {service_url}')
-  datasend = {"audio_file_path" :"/audio_files/SampleMedDictation.mp3"}
+  datasend = {"audio_file_path" :"/audio_files/test.mp3"}
   
   whisper_response = requests.post(url=service_url, json=datasend)
   # I just want the text of this response
@@ -79,7 +79,7 @@ ui = gr.Interface(fn=transcribe,
                            gr.Textbox(label="Snowflake User")
                            ],
                   title="Jenkins in Snowflake",
-                  description="Demo of Jenkins running in Snowpark Container Services (SCS), using a Whisper and Llama2 service!"
+                  description="This is a proof of concept application showing an implementation of Jenkins running entirely in the AHS Snowflake Account. It does not include any external network requests (e.g., to OpenAI). <TO BE COMPLETED>"
                            )
 
 ui.launch(share=False, debug=True, server_name="0.0.0.0", server_port=7860)
