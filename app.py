@@ -41,7 +41,9 @@ def transcribe(audio, request: gr.Request):
   datasend = {"audio_file_path" :"/audio_files/SampleMedDictation.mp3"}
   
   whisper_response = requests.post(url=service_url, json=datasend)
-  
+  # I just want the text of this response
+  whisper_response = whisper_response.text
+
   if whisper_response is None:
     logger.error('Received empty response from service ' + service_url)
 
@@ -72,7 +74,7 @@ my_inputs = [
 
 ui = gr.Interface(fn=transcribe,
                   inputs=my_inputs,
-                  outputs=[gr.JSON(label="Whisper Transcription"),
+                  outputs=[gr.Textbox(label="Whisper Transcription"),
                            gr.Number(label=".mp3 MB"),
                            gr.Textbox(label="Snowflake User")
                            ],
