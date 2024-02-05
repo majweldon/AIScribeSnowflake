@@ -41,7 +41,7 @@ def transcribe(audio, request: gr.Request):
                              headers={"Content-Type": "application/json"})
   print(response)
   whisper_response = response.json()
-  if whisper_response is None or not whisper_response["data"]:
+  if whisper_response is None:
     logger.error('Received empty response from service ' + service_url)
 
   # ################  Send file to Whisper for Transcription
