@@ -35,11 +35,16 @@ def transcribe(audio, request: gr.Request):
   sound.export("audio_files/test.mp3", format="mp3")
 
   ###################Call Whister Service in SCS
-  service_url = 'http://whisper-app.kl-test-jenkins.db-team-jenkins.snowflakecomputing.internal:9000/' 
+ 
+  service_url = 'http://whisper-app.kl-test-jenkins.db-team-jenkins.snowflakecomputing.internal:9000/transcripe_stage_audio' 
   logger.info(f'Calling {service_url}')
-  response = requests.get(url=service_url,
-                             headers={"Content-Type": "application/json"})
-  print(response)
+  datasend = {
+        "audio_file_path" :"/audio_files/test.mp3"
+    }
+  response = requests.post(url=service_url,
+                           json=datasend,
+                           headers={"Content-Type": "application/json"})
+  
   whisper_response = response.json()
   if whisper_response is None:
     logger.error('Received empty response from service ' + service_url)
