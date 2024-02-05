@@ -37,9 +37,9 @@ def transcribe(audio, request: gr.Request):
   ###################Call Whister Service in SCS
   service_url = 'http://whisper-app.kl-test-jenkins.db-team-jenkins.snowflakecomputing.internal:9000/' 
   logger.info(f'Calling {service_url}')
-  response = requests.post(url=service_url,
+  response = requests.get(url=service_url,
                              headers={"Content-Type": "application/json"})
-
+  print(response)
   whisper_response = response.json()
   if whisper_response is None or not whisper_response["data"]:
     logger.error('Received empty response from service ' + service_url)
