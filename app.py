@@ -5,9 +5,22 @@ import gradio as gr
 import soundfile as sf
 from pydub import AudioSegment
 import requests
+import logging
 
 note_transcript = ""
 
+def get_logger(logger_name):
+    logger = logging.getLogger(logger_name)
+    logger.setLevel(logging.DEBUG)
+    handler = logging.StreamHandler(sys.stdout)
+    handler.setLevel(logging.DEBUG)
+    handler.setFormatter(
+        logging.Formatter(
+            '%(name)s [%(asctime)s] [%(levelname)s] %(message)s'))
+    logger.addHandler(handler)
+    return logger
+
+logger = get_logger('service-to-service')
 
 def transcribe(audio, request: gr.Request):
   global note_transcript
@@ -21,10 +34,16 @@ def transcribe(audio, request: gr.Request):
   sound = AudioSegment.from_wav("audio_files/test.wav")
   sound.export("audio_files/test.mp3", format="mp3")
 
-  scs_whisper_service = 'http://whisper-app.kl-test-jenkins.db-team-jenkins.snowflakecomputing.internal' 
-  response = requests.get(scs_whisper_service) 
-  print(response.text)
- 
+  ###################Call Whister Service in SCS
+  service_url = 'http://whisper-app.kl-test-jenkins.db-team-jenkins.snowflakecomputing.internal:9000/' 
+  logger.info(f'Calling {service_url}')
+  response = requests.post(url=service_url,
+                             headers={"Content-Type": "application/json"})
+
+  whisper_response = response.json()
+  if whisper_response is None or not whisper_response["data"]:
+    logger.error('Received empty response from service ' + service_url)
+
   # ################  Send file to Whisper for Transcription
   # snowflake_whisper_service = 'whisper_app'
 
@@ -41,7 +60,7 @@ def transcribe(audio, request: gr.Request):
   headers = request.headers
   sf_user = headers["Sf-Context-Current-User"]
   
-  return [note_transcript, mp3_megabytes, sf_user, response]
+  return [note_transcript, mp3_megabytes, sf_user, whisper_response]
 
 ###################### Define Gradio Interface ######################
 my_inputs = [
