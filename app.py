@@ -72,7 +72,7 @@ my_inputs = [
 
 ui = gr.Interface(fn=transcribe,
                   inputs=my_inputs,
-                  outputs=[gr.Textbox(label="Whisper Transcription", show_copy_button=True),
+                  outputs=[gr.JSON(label="Whisper Transcription", show_copy_button=True),
                            gr.Number(label=".mp3 MB"),
                            gr.Textbox(label="Snowflake User")
                            ],
