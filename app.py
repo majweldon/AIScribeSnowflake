@@ -65,21 +65,27 @@ def transcribe(audio, model_name, history_type, request: gr.Request):
   if whisper_response is None:
     logger.error('Received empty response from service ' + service_url)
 
-  messages.append({"role": "user", "content": whisper_response})
- 
+  # Setup prompt message using mistral format
+    messages=[
+        {"role": "user", "content": role},
+        {"role": "assistant", "content": whisper_response},
+    ]
+
   ###################Call LLM Service in SCS
   openai_api_base = os.getenv('OPENAI_API', 'http://kl-vllm-mistral.kl-test-jenkins.db-team-jenkins.snowflakecomputing.internal:8000/v1') 
   logger.info(f'Calling {openai_api_base}')
+  api_headers = {'Content-Type': 'application/json'}
+
   openai_api_key = "EMPTY"
-  
   client = OpenAI(
     api_key=openai_api_key,
-    base_url=openai_api_base
+    base_url=openai_api_base,
+    default_headers=api_headers
 )
 # %%
   try:
     response = client.completions.create(model="/models/mistral/",
-                      prompt=messages, 
+                      prompt=messages,
                       max_tokens=500,
                       n=1,
                       stop=None,
@@ -94,11 +100,8 @@ def transcribe(audio, model_name, history_type, request: gr.Request):
   mp3_megabytes = file_size / (1024 * 1024)
   mp3_megabytes = round(mp3_megabytes, 2)
 
-  request = gr.Request()
   headers = request.headers
   sf_user = headers["Sf-Context-Current-User"]
-  if sf_user is None:
-    sf_user = "Unknown" 
   
   transcription_text = 'LLM not yet available'
   # audio_transcript_words = audio_transcript.text.split() # Use when using mic input
