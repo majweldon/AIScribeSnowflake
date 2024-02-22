@@ -42,8 +42,7 @@ def transcribe(audio, model_name, history_type, request: gr.Request):
   file_name = history_type_map.get(history_type, "Weldon_Full_Visit_Format.txt")
   with open(f"Format_Library/{file_name}", "r") as f:
       role = f.read()
-
-  messages = [{"role": "system", "content": role}]
+  
   ################# Create Dialogue Transcript from Audio Recording and Append(via Whisper)
 
   audio_data, samplerate = sf.read(audio) # read audio from filepath
@@ -66,10 +65,10 @@ def transcribe(audio, model_name, history_type, request: gr.Request):
     logger.error('Received empty response from service ' + service_url)
 
   # Setup prompt message using mistral format
-    messages=[
-        {"role": "user", "content": role},
-        {"role": "assistant", "content": whisper_response},
-    ]
+  messages=[
+      {"role": "user", "content": role},
+      {"role": "assistant", "content": whisper_response},
+  ]
 
   ###################Call LLM Service in SCS
   openai_api_base = os.getenv('OPENAI_API', 'http://kl-vllm-mistral.kl-test-jenkins.db-team-jenkins.snowflakecomputing.internal:8000/v1') 
