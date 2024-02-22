@@ -71,8 +71,7 @@ def transcribe(audio, model_name, history_type, request: gr.Request):
   openai_api_base = os.getenv('OPENAI_API', 'http://kl-vllm-mistral.kl-test-jenkins.db-team-jenkins.snowflakecomputing.internal:8000/v1') 
   logger.info(f'Calling {openai_api_base}')
   openai_api_key = "EMPTY"
-  api_headers = {'Content-Type': 'application/json'}
-
+  
   client = OpenAI(
     api_key=openai_api_key,
     base_url=openai_api_base
@@ -80,11 +79,10 @@ def transcribe(audio, model_name, history_type, request: gr.Request):
 # %%
   response = client.completions.create(model="/models/mistral/",
                                       prompt=messages, 
-                                      max_tokens=200,
+                                      max_tokens=500,
                                       n=1,
                                       stop=None,
-                                      temperature=0.9)
-
+                                      temperature=0)
   note_transcript = response.choices[0].message.content
 
     ### Word and MB Count
