@@ -69,13 +69,13 @@ def transcribe(audio, model_name, history_type, request: gr.Request):
  
   ###################Call LLM Service in SCS
   openai_api_base = service_url = os.getenv('OPENAI_API', 'https://kl-vllm-mistral.kl-test-jenkins.db-team-jenkins.snowflakecomputing.internal:8000/v1') 
+  logger.info(f'Calling {openai_api_base}')
   openai_api_key = "EMPTY"
   api_headers = {'Content-Type': 'application/json'}
 
   client = OpenAI(
     api_key=openai_api_key,
-    base_url=openai_api_base,
-    default_headers=api_headers
+    base_url=openai_api_base
 )
 # %%
   response = client.completions.create(model="/models/mistral/",
