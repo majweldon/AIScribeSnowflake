@@ -115,7 +115,7 @@ my_inputs = [
 ]
 
 #get contents of description.html into a python variable
-with open("dual_AIScribe\description.html", "r") as file:
+with open("description.html", "r") as file:
     description = file.read()
 
 ui = gr.Interface(fn=transcribe,
