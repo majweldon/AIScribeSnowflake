@@ -77,13 +77,17 @@ def transcribe(audio, model_name, history_type, request: gr.Request):
     base_url=openai_api_base
 )
 # %%
-  response = client.completions.create(model="/models/mistral/",
-                                      prompt=messages, 
-                                      max_tokens=500,
-                                      n=1,
-                                      stop=None,
-                                      temperature=0)
-  note_transcript = response.choices[0].message.content
+  try:
+    response = client.completions.create(model="/models/mistral/",
+                      prompt=messages, 
+                      max_tokens=500,
+                      n=1,
+                      stop=None,
+                      temperature=0)
+    note_transcript = response.choices[0].message.content
+  except Exception as e:
+    logger.error(f"Error occurred during LLM completion: {str(e)}")
+    note_transcript = "Error occurred during LLM completion"
 
     ### Word and MB Count
   file_size = os.path.getsize("audio_files/test.mp3")
