@@ -57,8 +57,8 @@ def transcribe(audio, use_test_audio, model_name, history_type, request: gr.Requ
     subprocess.run(["cp", "Test_Audio_Files/Test_Elbow.mp3", "audio_files/test.mp3"])
     logger.info("Using test audio file")
 
-  ###################Call Whister Service in SCS
-  service_url = os.getenv('WHISPER_API', 'http://whisper-app.kl-test-jenkins.db-team-jenkins.snowflakecomputing.internal:9000/transcripe_stage_audio') 
+  ###################Call Whisper Service in SCS
+  service_url = os.getenv('WHISPER_API', 'http://mw-whisper-app.mw-test-jenkins.db-team-jenkins.snowflakecomputing.internal:9000/transcripe_stage_audio') 
   logger.info(f'Calling {service_url}')
   datasend = {"audio_file_path" :"/audio_files/test.mp3"}
   
@@ -71,12 +71,11 @@ def transcribe(audio, use_test_audio, model_name, history_type, request: gr.Requ
 
   # Setup prompt message using mistral format
   
-
   prompt_txt = "<sr>[INST]" + role + whisper_response + "[/INST]" 
   logger.info(f'Prompt Text: {prompt_txt}')
 
   ###################Call LLM Service in SCS
-  openai_api_base = os.getenv('OPENAI_API', 'http://kl-vllm-mistral.kl-test-jenkins.db-team-jenkins.snowflakecomputing.internal:8000/v1') 
+  openai_api_base = os.getenv('OPENAI_API', 'http://mw-mistral-vllm.mw-test-jenkins.db-team-jenkins.snowflakecomputing.internal:8000/v1') 
   logger.info(f'Calling {openai_api_base}')
   api_headers = {'Content-Type': 'application/json'}
   
@@ -88,7 +87,7 @@ def transcribe(audio, use_test_audio, model_name, history_type, request: gr.Requ
 )
   try:
     response = client.completions.create(
-      model="/models/mistral/",
+      model="/models/",
       prompt=prompt_txt,
       max_tokens=500,
       stream=False,
@@ -128,7 +127,7 @@ with open("description.html", "r") as file:
 
 ui = gr.Interface(fn=transcribe,
                   inputs=my_inputs,
-                  outputs=[gr.Textbox(label="Transcription (temporarily shown for testing)"),
+                  outputs=[gr.Textbox(label="Transcription)"),
                            gr.Textbox(label="Summary"),
                            gr.Number(label=".mp3 MB"), 
                            gr.Textbox(label="Snowflake User")
