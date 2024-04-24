@@ -88,11 +88,14 @@ def transcribe(audio, use_test_audio, model_name, history_type, request: gr.Requ
 )
   try:
     response = client.completions.create(
-      model="/models/",
+      #model="/models/",  #For my Mistral Model
+      model = /models/LLAMA3-8B-INSTRUCT-HF
       prompt=prompt_txt,
       max_tokens=500,
       stream=False,
-      temperature=0
+      n=1,
+      temperature=0,
+      extra_body={"stop_token_ids":[128009]}
       )
 
     note_transcript = response.choices[0].text.strip() 
