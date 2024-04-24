@@ -89,7 +89,7 @@ def transcribe(audio, use_test_audio, model_name, history_type, request: gr.Requ
   try:
     response = client.completions.create(
       #model="/models/",  #For my Mistral Model
-      model = /models/LLAMA3-8B-INSTRUCT-HF
+      model = "/models/LLAMA3-8B-INSTRUCT-HF/",
       prompt=prompt_txt,
       max_tokens=500,
       stream=False,
