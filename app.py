@@ -120,7 +120,7 @@ my_inputs = [
     gr.Audio(source="microphone", type="filepath"), #Gradio 3.48.0
     gr.Checkbox(label="Use Test_Elbow.mp3 (overrides mic input)"),
     # gr.File(file_types=['.mp3', '.wav'], label="Upload Audio File (overrides microphone input - for TESTING)"),
-    gr.Dropdown(['mistralai/Mistral-7B-Instruct-v0.2'], value= 'mistralai/Mistral-7B-Instruct-v0.2', label="Summarization LLM"),
+    gr.Dropdown(['...'], value= 'mistralai/Mistral-7B-Instruct-v0.2', label="Summarization LLM"),
     gr.Radio(["History","H+P","Impression/Plan","Full Visit","Handover","Psych","EMS","SBAR","Meds Only"], show_label=False)
     #gr.Audio(sources=["microphone"],type="numpy"), #Gradio 4.7.1
 ]
