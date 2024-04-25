@@ -23,7 +23,7 @@ def get_logger(logger_name):
 
 logger = get_logger('service-to-service')
 
-def transcribe(audio, use_test_audio, model_name, history_type, request: gr.Request):
+def transcribe(audio, use_test_audio, history_type, request: gr.Request):
   global note_transcript
   history_type_map = {
       "History": "Weldon_History_Format.txt",
@@ -120,7 +120,7 @@ my_inputs = [
     gr.Audio(source="microphone", type="filepath"), #Gradio 3.48.0
     gr.Checkbox(label="Use Test_Elbow.mp3 (overrides mic input)"),
     # gr.File(file_types=['.mp3', '.wav'], label="Upload Audio File (overrides microphone input - for TESTING)"),
-    gr.Dropdown(['...'], value= 'mistralai/Mistral-7B-Instruct-v0.2', label="Summarization LLM"),
+    # gr.Dropdown(['...'], value= 'mistralai/Mistral-7B-Instruct-v0.2', label="Summarization LLM"),
     gr.Radio(["History","H+P","Impression/Plan","Full Visit","Handover","Psych","EMS","SBAR","Meds Only"], show_label=False)
     #gr.Audio(sources=["microphone"],type="numpy"), #Gradio 4.7.1
 ]
