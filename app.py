@@ -71,7 +71,7 @@ def transcribe(audio, use_test_audio, history_type, request: gr.Request):
 
   # Setup prompt message 
   #  prompt_txt = "<sr>[INST]" + role + whisper_response + "[/INST]" ## Mistral Format
-  prompt_txt = role + "/n/n/n" + whisper_response ## Single block of text
+  prompt_txt = role + whisper_response ## Single block of text
     
   logger.info(f'Prompt Text: {prompt_txt}')
 
@@ -87,16 +87,29 @@ def transcribe(audio, use_test_audio, history_type, request: gr.Request):
     base_url=openai_api_base,
     default_headers=api_headers
 )
+ # try:
+ #   response = client.completions.create(
+ #     #model="/models/",  #For my Mistral Model
+ #     model = "/models/LLAMA3-8B-INSTRUCT-HF",  ## Trying this without the trailing / to match CURL request
+ #     prompt=prompt_txt,
+ #     max_tokens=500,
+ #     stream=False,
+ #     n=1,
+ #     temperature=0.1,
+ #     extra_body={"stop_token_ids":[128009]}
+ #     )
   try:
-    response = client.completions.create(
-      #model="/models/",  #For my Mistral Model
-      model = "/models/LLAMA3-8B-INSTRUCT-HF",  ## Trying this without the trailing / to match CURL request
-      prompt=prompt_txt,
-      max_tokens=500,
-      stream=False,
-      n=1,
-      temperature=0.1,
-      extra_body={"stop_token_ids":[128009]}
+      response = client.chat.completions.create(
+          messages=[
+              {"role": "system","content": role},
+              {"role": "user","content": whisper_response}
+          ],
+          model="/models/LLAMA3-8B-INSTRUCT-HF",
+          n=1,
+          temperature=0.1,
+          stream=False,
+          max_tokens=500,
+          extra_body={"stop_token_ids":[128009]}
       )
 
     note_transcript = response.choices[0].text.strip() 
