@@ -71,7 +71,7 @@ def transcribe(audio, use_test_audio, history_type, request: gr.Request):
 
   # Setup prompt message 
   #  prompt_txt = "<sr>[INST]" + role + whisper_response + "[/INST]" ## Mistral Format
-  prompt_txt = role + whisper_response ## Single block of text
+  prompt_txt = role + "\n\n#####\n\n" + whisper_response ## Single block of text (if using LLAMA in completions mode)
     
   logger.info(f'Prompt Text: {prompt_txt}')
 
