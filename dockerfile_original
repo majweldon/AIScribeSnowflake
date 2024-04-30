@@ -1,3 +1,7 @@
+
+######### This was succesfully used to create both Mistral (8B) and LLAMA3 (8B) models
+
+
 # Use an official Python runtime as the base image
 FROM python:3.9-slim
 
